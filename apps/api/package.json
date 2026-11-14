@@ -1,0 +1,29 @@
+{
+  "name": "@app/api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "migrate": "tsx src/db/migrate.ts",
+    "seed": "tsx src/db/seed.ts",
+    "db:generate": "drizzle-kit generate"
+  },
+  "dependencies": {
+    "@app/engine": "workspace:*",
+    "@app/shared": "workspace:*",
+    "drizzle-orm": "^0.39.3",
+    "fastify": "^5.2.1",
+    "postgres": "^3.4.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.4",
+    "drizzle-kit": "^0.30.4",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3",
+    "vitest": "^3.0.5"
+  }
+}
