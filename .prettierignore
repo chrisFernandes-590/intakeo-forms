@@ -1,0 +1,8 @@
+dist
+build
+node_modules
+.turbo
+coverage
+pnpm-lock.yaml
+.husky
+apps/api/drizzle/migrations
