@@ -27,7 +27,7 @@ This single command will:
 1. Enable Corepack to manage `pnpm 9`.
 2. Install all monorepo dependencies and link workspace packages (`@app/*`).
 3. Generate `.env` from `.env.example` if it doesn't already exist.
-4. Launch local infrastructure containers via Docker Compose (Postgres 16, Redis 7, MinIO S3, Mailpit).
+4. Launch local infrastructure containers via Docker Compose (Postgres 16, Redis 7, Mailpit).
 5. Wait for the Postgres healthcheck to pass.
 6. Apply Drizzle database migrations.
 7. Run the idempotent database seed script.
@@ -60,16 +60,14 @@ This starts:
 
 ## 4. Service URLs & Ports
 
-| Service            | Port   | Description / URL                                        | Credentials                 |
-| :----------------- | :----- | :------------------------------------------------------- | :-------------------------- |
-| **API**            | `3001` | http://localhost:3001/health                             | N/A                         |
-| **Web Frontend**   | `5173` | http://localhost:5173                                    | N/A                         |
-| **PostgreSQL 16**  | `5432` | `postgresql://postgres:postgres@localhost:5432/formflow` | `postgres` / `postgres`     |
-| **Redis 7**        | `6379` | `redis://localhost:6379`                                 | N/A                         |
-| **MinIO S3 API**   | `9000` | http://localhost:9000                                    | `minioadmin` / `minioadmin` |
-| **MinIO Console**  | `9001` | http://localhost:9001                                    | `minioadmin` / `minioadmin` |
-| **Mailpit Web UI** | `8025` | http://localhost:8025                                    | N/A                         |
-| **Mailpit SMTP**   | `1025` | `localhost:1025`                                         | N/A                         |
+| Service            | Port   | Description / URL                                        | Credentials             |
+| :----------------- | :----- | :------------------------------------------------------- | :---------------------- |
+| **API**            | `3001` | http://localhost:3001/health                             | N/A                     |
+| **Web Frontend**   | `5173` | http://localhost:5173                                    | N/A                     |
+| **PostgreSQL 16**  | `5432` | `postgresql://postgres:postgres@localhost:5432/formflow` | `postgres` / `postgres` |
+| **Redis 7**        | `6379` | `redis://localhost:6379`                                 | N/A                     |
+| **Mailpit Web UI** | `8025` | http://localhost:8025                                    | N/A                     |
+| **Mailpit SMTP**   | `1025` | `localhost:1025`                                         | N/A                     |
 
 ---
 
@@ -116,10 +114,6 @@ See the Architecture Decision Records in [`docs/adr/`](adr/):
 - **Queue**: [0001-queue.md](adr/0001-queue.md) - BullMQ + Redis selected over pg-boss for ultra-low latency bursts and decoupling from OLTP transactions.
 - **Schema Format**: [0002-schema-format.md](adr/0002-schema-format.md) - JSON Schema + UI extensions selected for portability and native JSONB storage over custom DSLs or runtime-only Zod schemas.
 - **Authentication**: [0003-auth.md](adr/0003-auth.md) - Server-backed session cookies selected for instant revocation and XSS resistance over stateless JWTs.
-
-### Implementation Note: MinIO Container Image
-
-In late 2025, upstream MinIO removed free public release tags from Docker Hub. In `infra/docker-compose.dev.yml`, we use the hardened `alpine/minio:latest-release` container and `pgsty/mc:latest` client to ensure reliable, zero-auth public image pulling for local development.
 
 ---
 

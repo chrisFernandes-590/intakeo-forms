@@ -10,7 +10,7 @@ A modern form builder and submission platform monorepo.
 - `apps/renderer`: Node + Playwright service stub for form rendering and export.
 - `packages/shared`: Shared configuration loader (zod), shared utilities, and common types.
 - `packages/engine`: Core form schema evaluation and validation engine.
-- `infra/`: Docker Compose configuration for local backing services (Postgres, Redis, MinIO, Mailpit).
+- `infra/`: Docker Compose configuration for local backing services (Postgres, Redis, Mailpit).
 
 ## Quick Start
 

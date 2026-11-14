@@ -7,7 +7,7 @@
       "enableDockerBuildx": true
     }
   },
-  "forwardPorts": [3001, 5173, 5432, 6379, 9000, 9001, 1025, 8025],
+  "forwardPorts": [3001, 5173, 5432, 6379, 1025, 8025],
   "postCreateCommand": "bash scripts/bootstrap.sh",
   "customizations": {
     "vscode": {
