@@ -1,0 +1,17 @@
+{
+  "name": "FormFlow Development",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:22",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "version": "latest",
+      "enableDockerBuildx": true
+    }
+  },
+  "forwardPorts": [3001, 5173, 5432, 6379, 9000, 9001, 1025, 8025],
+  "postCreateCommand": "bash scripts/bootstrap.sh",
+  "customizations": {
+    "vscode": {
+      "extensions": ["dbaeumer.vscode-eslint", "esbenp.prettier-vscode"]
+    }
+  }
+}
