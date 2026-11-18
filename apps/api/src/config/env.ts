@@ -10,14 +10,13 @@ export const envSchema = z.object({
     .default("development"),
   PORT: z.coerce.number().int().positive().default(4000),
   HOST: z.string().default("0.0.0.0"),
-  DATABASE_URL: z
-    .string()
-    .min(1, "DATABASE_URL is required")
-    .default("postgresql://postgres:postgres@localhost:5432/intakeo_forms"),
+  DATABASE_URL: z.string().min(1, "DATABASE_URL is required"),
   CORS_ORIGIN: z.string().default("*"),
   LOG_LEVEL: z
     .enum(["fatal", "error", "warn", "info", "debug", "trace"])
     .default("info"),
+  DATABASE_URL_POOLED: z.string().min(1, "DATABASE_URL_POOLED is required"),
+  NEON_AUTH_BASE_URL: z.string().min(1, "NEON_AUTH_BASE_URL is required"),
 });
 
 export type Env = z.infer<typeof envSchema>;
